@@ -134,8 +134,8 @@ int main() {
     ios::sync_with_stdio(false);
     srand(time(NULL));
     int cmd, n;
-    int *d = new int[n];
     cin >> cmd >> n;
+    int *d = new int[n];
     rd(d, n);
     switch(cmd) {
         case 0: bubblesort(d, n); break;
@@ -147,5 +147,6 @@ int main() {
         default: return 0;
     }
     prt(d, n);
+    delete[] d;
     return 0;
 }
