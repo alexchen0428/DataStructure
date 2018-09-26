@@ -54,7 +54,7 @@ void insertionsort_list(int *d, int n) {
 }
 
 void selectionsort(int *d, int n) {
-    for (int i = 1; i < n - 1; ++i) {
+    for (int i = 0; i < n - 1; ++i) {
         int flag = i;
         for (int j = i + 1; j < n; ++j)
             if (d[j] < d[flag])
