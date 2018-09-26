@@ -18,6 +18,6 @@ if __name__ == "__main__":
             n = size[cases]
             w.write(str(n) + '\n')
             for i in range(n):
-                w.write(str(n-i) + '\n')
+                w.write(str(INT_MAX-1-i) + '\n')
         print("Testcase{}".format(cases))
     os.system('./reverse.sh')

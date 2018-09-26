@@ -1,0 +1,14 @@
+% !TEX root = ../a1.tex
+\usepackage{minted}
+\usepackage{listings}
+\usepackage{caption}
+% \usemintedstyle{tango}
+
+\newcommand{\inputcode}[4]{
+    \begin{longlisting}
+        \caption{#3}
+        \inputminted[xleftmargin=25pt, linenos, breaklines, bgcolor=bg]{#1}{#2}
+        \label{#4}
+\end{longlisting}}
+\newenvironment{longlisting}{\captionsetup{type=listing}}{}
+\definecolor{bg}{rgb}{0.95,0.95,0.95}
