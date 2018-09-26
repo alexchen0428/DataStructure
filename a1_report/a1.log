@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/W32TeX) (preloaded format=pdflatex 2017.10.15)  25 SEP 2018 21:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/W32TeX) (preloaded format=pdflatex 2017.10.15)  26 SEP 2018 09:48
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -680,11 +680,7 @@ runsystem(for ^%i in (pygmentize.exe pygmentize.bat pygmentize.cmd) do set > a1.
 
 runsystem(del a1.aex)...executed.
 
- (./a1.aux
-
-LaTeX Warning: Label `345' multiply defined.
-
-)
+ (./a1.aux)
 \openout1 = `a1.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 29.
@@ -874,74 +870,81 @@ File: ../a1/345.jpg Graphic file (type jpg)
 <use ../a1/345.jpg>
 Package pdftex.def Info: ../a1/345.jpg  used on input line 21. on input line 21.
 Package pdftex.def Info: Requested size: 385.50183pt x 231.3018pt on input line 21.
-<../a1/reverse.jpg, id=15, 1003.75pt x 602.25pt>
-File: ../a1/reverse.jpg Graphic file (type jpg)
-<use ../a1/reverse.jpg>
-Package pdftex.def Info: ../a1/reverse.jpg  used on input line 31. on input line 31.
-Package pdftex.def Info: Requested size: 385.50183pt x 231.3018pt on input line 31.
- [2 <../a1/345.jpg>] (./_minted-a1/default-pyg-prefix.pygstyle)
-runsystem(pygmentize -S default -f latex -P commandprefix=PYGdefault > _minted-a1\default.pygstyle)...executed.
-
- (./_minted-a1/default.pygstyle) (./_minted-a1/B815E9343EE396E718ADF8A2562F26F227D0D440AC95582CE518132117555543.pygtex
+<../a1/reverse012.jpg, id=15, 1003.75pt x 602.25pt>
+File: ../a1/reverse012.jpg Graphic file (type jpg)
+<use ../a1/reverse012.jpg>
+Package pdftex.def Info: ../a1/reverse012.jpg  used on input line 33. on input line 33.
+Package pdftex.def Info: Requested size: 385.50183pt x 231.3018pt on input line 33.
+<../a1/reverse345.jpg, id=16, 1003.75pt x 602.25pt>
+File: ../a1/reverse345.jpg Graphic file (type jpg)
+<use ../a1/reverse345.jpg>
+Package pdftex.def Info: ../a1/reverse345.jpg  used on input line 38. on input line 38.
+Package pdftex.def Info: Requested size: 385.50183pt x 231.3018pt on input line 38.
+ [2 <../a1/345.jpg>]
+<../a1/same.jpg, id=20, 1003.75pt x 602.25pt>
+File: ../a1/same.jpg Graphic file (type jpg)
+<use ../a1/same.jpg>
+Package pdftex.def Info: ../a1/same.jpg  used on input line 45. on input line 45.
+Package pdftex.def Info: Requested size: 385.50183pt x 231.3018pt on input line 45.
+ [3 <../a1/reverse012.jpg> <../a1/reverse345.jpg>] [4 <../a1/same.jpg>] (./_minted-a1/default-pyg-prefix.pygstyle) (./_minted-a1/default.pygstyle) (./_minted-a1/B815E9343EE396E718ADF8A2562F26F227D0D440AC95582CE518132117555543.pygtex
 LaTeX Font Info:    Font shape `OT1/cmtt/bx/n' in size <10.95> not available
 (Font)              Font shape `OT1/cmtt/m/n' tried instead on input line 6.
-) [3 <../a1/reverse.jpg>]
-Underfull \vbox (badness 10000) detected at line 37
+)
+Underfull \vbox (badness 6575) detected at line 60
+ []
+
+[5
+
+]
+Underfull \vbox (badness 10000) detected at line 60
  []
 
 
-Underfull \vbox (badness 10000) detected at line 37
+Underfull \vbox (badness 10000) detected at line 60
  []
 
-[4]
-Underfull \vbox (badness 10000) detected at line 37
- []
-
-
-Underfull \vbox (badness 10000) detected at line 37
- []
-
-[5]
-Underfull \vbox (badness 10000) detected at line 37
+[6]
+Underfull \vbox (badness 10000) detected at line 60
  []
 
 
-Underfull \vbox (badness 10000) detected at line 37
+Underfull \vbox (badness 10000) detected at line 60
  []
 
-[6] (./_minted-a1/BE5B2373063E3DCAADB898D3EF6D20111F4DE28A02975E4817C3C20FFE9AAFAD.pygtex)
-Overfull \vbox (20.73746pt too high) detected at line 38
- []
-
-[7] (./_minted-a1/62266196467FAEE6D6550E305D2FFCA5FE4E407A8A1CC1CE256D78528A327724.pygtex) [8] (./_minted-a1/26B7B8B5542D226F7EE8A98FBE91A11C1BF8D77593D05D62C2BE2397A7173554.pygtex)
-Underfull \vbox (badness 10000) detected at line 40
+[7]
+Underfull \vbox (badness 10000) detected at line 60
  []
 
 
-Underfull \vbox (badness 10000) detected at line 40
+Underfull \vbox (badness 10000) detected at line 60
  []
 
-[9])
-runsystem(del _minted-a1\tango.pygstyle)...executed.
+[8] (./_minted-a1/BE5B2373063E3DCAADB898D3EF6D20111F4DE28A02975E4817C3C20FFE9AAFAD.pygtex) (./_minted-a1/62266196467FAEE6D6550E305D2FFCA5FE4E407A8A1CC1CE256D78528A327724.pygtex) [9] (./_minted-a1/3710CBBE1ED0648123DB6F8B05A7C6BA1BF8D77593D05D62C2BE2397A7173554.pygtex)
+Overfull \vbox (3.05745pt too high) detected at line 63
+ []
 
- [10] (./a1.aux)
+[10]
+Underfull \vbox (badness 10000) detected at line 63
+ []
 
-LaTeX Warning: There were multiply-defined labels.
 
- ) 
+Underfull \vbox (badness 10000) detected at line 63
+ []
+
+[11]) [12] (./a1.aux) ) 
 Here is how much of TeX's memory you used:
- 19874 strings out of 492990
- 388168 string characters out of 6136333
- 485646 words of memory out of 5000000
- 23211 multiletter control sequences out of 15000+600000
+ 19886 strings out of 492990
+ 388389 string characters out of 6136333
+ 484533 words of memory out of 5000000
+ 23222 multiletter control sequences out of 15000+600000
  543441 words of font info for 75 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 40i,10n,45p,10431b,621s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 40i,10n,45p,10431b,623s stack positions out of 5000i,500n,10000p,200000b,80000s
 <d:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmitt10.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><d:/texlive/2017/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on a1.pdf (10 pages, 328613 bytes).
+Output written on a1.pdf (12 pages, 464756 bytes).
 PDF statistics:
- 88 PDF objects out of 1000 (max. 8388607)
- 60 compressed objects within 1 object stream
+ 96 PDF objects out of 1000 (max. 8388607)
+ 64 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 26 words of extra memory for PDF output out of 10000 (max. 10000000)
 

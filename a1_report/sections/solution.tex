@@ -21,17 +21,40 @@ In Fig. \ref{012}, the curves are in shape of quadratic functions, among which t
     \includegraphics[width=0.8\linewidth]{../a1/345}
     \caption{Performance of $O(n\log n)$ sort algorithms}\label{345}
 \end{figure}
-In Fig. \ref{345}, the curves are almost linear, where the in-place Quick sort shows an undebatable edge. It's hard to tell whether it's $O(n\log n)$ or $O(n)$ because the input size is not large enough to give credit to the expectation. The distinction between two different Quick sort is intriguing. They followed almost the same procedure whereas a big gap occurred when even the input data is random. This reflects It also indicates that the randomized Quick sort works remarkably, even compared to other steady $O(n\log n)$ algorithms like Merge sort.
+In Fig. \ref{345}, the curves are almost linear, where the in-place Quick sort shows an undebatable edge. It's hard to tell whether it's $O(n\log n)$ or $O(n)$ because the input size is not large enough to give credit to the expectation. The distinction between two different Quick sort is intriguing. They followed almost the same procedure whereas a big gap occurred when even the input data is random. It shows that allocating memory is considerably time-consuming. This reflects It also indicates that the randomized Quick sort works remarkably, even compared to other steady $O(n\log n)$ algorithms like Merge sort.
 
 \section{Extreme Input Situations}
 \subsection{An Array in Descending Order}
-For descending data, we can see that Quick sort in-place is still advantageous, although all of them become more efficient. One possible explanation is that the descending data simultaneously reduces the cost on comparison between two elements. 
+For descending data, we still separate them into two categories. We observed that all of them become more efficient. One possible explanation is that the descending data guarantees that each element differs. Elements with the same value probably lead to slowing down.
+
+In addition, the gap between Bubble sort and the other two $O(n^2)$ algorithms is shrinking, saying that their times of swap are approaching. In general, the complexities essentially follows their average performance. Quick sort does not degenerate back to $O(n^2)$.
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\linewidth]{../a1/reverse}
-    \caption{Performance of $O(n\log n)$ sort algorithms}\label{345}
+    \includegraphics[width=0.8\linewidth]{../a1/reverse012}
+    \caption{Performance of $O(n^2)$ sort algorithms}\label{r012}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{../a1/reverse345}
+    \caption{Performance of $O(n\log n)$ sort algorithms}\label{r345}
 \end{figure}
 
+\subsection{An Array of 1's}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\linewidth]{../a1/same}
+    \caption{Performance of $O(n\log n)$ sort algorithms in 1's array}\label{s}
+\end{figure}
+For this manipulated input, the performance of Quick sort precipitously degenerates, especially the version that requires extra space. Not only does it degenerate to $O(n^2)$ but also obtains a huge constant, even larger than Bubble sort. This phenomenon, again, indicates the flaw of frequently allocating memories.
+
+On the contrary, Merge sort is quite steady. Whether the input is manipulated or not does not provoke a notable change on its performance, even though in average case it's still slower than in-place Quick sort.
+
+\section{Conclusion}
+In this report, we have demonstrated the characteristics of six different sort algorithms as well as their performance when the input is descending or all the same. Quick sort with extra memory is especially unsteady whose performance greatly depends on the input pattern. While the Merge sort, on the contrary, is brilliant on steadiness.
+
+Also, the Insertion sort implemented with linked-list is an interesting case. It avoids $O(n)$ time to move the sorted part but involves extra memory allocation. Since $O(n^2)$ sort algorithms are not practicable in reality, here we do not apply the time complexity analysis, although the code is finished in Appendix. If the reader is interested, the codes of which is listed in Appendix and easy to test.
+
+\clearpage
 \appendix
 \section{Source Codes}
 \inputcode{c++}{../a1/a1_test.cpp}{Sort algorithms}{1}
