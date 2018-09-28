@@ -1,11 +1,8 @@
 .PHONY: clean
-all: run
-
-run: compile
-	./a1 < input
+all: compile 
 
 compile: a1.cpp
-	g++ -o a1 a1.cpp
+	g++ -std=c++11 -Wall -o main a1.cpp
 
 clean:
 	rm -f a1 *.o

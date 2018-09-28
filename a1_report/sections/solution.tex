@@ -1,7 +1,7 @@
 % !TEX root = ../a1.tex
 
 \section{Introduction}
-In this report, we discuss the time complexity of six types of different sort algorithms including Bubble sort, Insertion sort, Selection sort, Merge sort and two types of Quick sorts, by testing their average runtime with input in different sizes.  The graph of time-size relationship, intuitively demonstrates the time complexity, thus confirming our theoretical expectation.
+In this report, we discuss the time complexity of six types of different sort algorithms including Bubble sort, Insertion sort, Selection sort, Merge sort and two types of Quick sorts, by testing their average runtime with input in different sizes. Input of each size is repeated for five times. The graph of time-size relationship, intuitively demonstrates the time complexity, thus confirming our theoretical expectation.
 
 Furthermore, this report entails several extreme situations like an integer array in descending order or an array of merely 1's. The result, interestingly, reflects the capacity of those six algorithms under different circumstances.
 
@@ -10,7 +10,7 @@ Since the time complexity of $O(n^2)$ and $O(n\log n)$ differs enormously with t
 \section{Performance analysis on $O(n^2)$ Sort Algorithms}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\linewidth]{../a1/012}
+    \includegraphics[width=0.75\linewidth]{../a1/012}
     \caption{Performance of $O(n^2)$ sort algorithms}\label{012}
 \end{figure}
 In Fig. \ref{012}, the curves are in shape of quadratic functions, among which the Bubble sort obtains a obvious larger constant. The runtime is considerably increasing non-linearly after the input size exceeds 25000.
@@ -57,7 +57,7 @@ Also, the Insertion sort implemented with linked-list is an interesting case. It
 \clearpage
 \appendix
 \section{Source Codes}
-\inputcode{c++}{../a1/a1_test.cpp}{Sort algorithms}{1}
-\inputcode{python}{../a1/test.py}{Test case generator}{2}
-\inputcode{bash}{../a1/test.sh}{Cases runner}{3}
-\inputcode{python}{../a1/plot.py}{Plotting program}{4}
+\inputcode{c++}{sections/a1_test.cpp}{Sort algorithms}{1}
+\inputcode{python}{sections/test.py}{Test case generator}{2}
+\inputcode{bash}{sections/test.sh}{Cases runner}{3}
+\inputcode{python}{sections/plot.py}{Plotting program}{4}

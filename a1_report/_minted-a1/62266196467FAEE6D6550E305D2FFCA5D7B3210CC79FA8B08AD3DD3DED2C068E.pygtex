@@ -1,0 +1,24 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+ch}{\PYGZsh{}!/bin/zsh}
+
+\PYG{k}{for} i in \PYG{l+s+sb}{`}seq \PYG{l+m}{0} \PYG{l+m}{2}\PYG{l+s+sb}{`}
+\PYG{k}{do}
+    \PYG{n+nb}{echo} \PYG{n+nv}{\PYGZdl{}i}
+    \PYG{k}{for} j in \PYG{l+s+sb}{`}seq \PYG{l+m}{0} \PYG{l+m}{7}\PYG{l+s+sb}{`}
+    \PYG{k}{do}
+        \PYG{n+nb}{echo} \PYG{n+nv}{\PYGZdl{}i} \PYG{p}{|} ./a1\PYGZus{}test \PYGZlt{} input\PYG{n+nv}{\PYGZdl{}j} \PYGZgt{}\PYGZgt{} \PYG{n+nv}{\PYGZdl{}i}.out
+        \PYG{n+nb}{echo} \PYG{n+nv}{\PYGZdl{}j} \PYG{n+nv}{\PYGZdl{}?}
+    \PYG{k}{done}
+\PYG{k}{done} 
+
+\PYG{k}{for} i in \PYG{l+s+sb}{`}seq \PYG{l+m}{3} \PYG{l+m}{5}\PYG{l+s+sb}{`}
+\PYG{k}{do}
+    \PYG{n+nb}{echo} \PYG{n+nv}{\PYGZdl{}i}
+    \PYG{k}{for} j in \PYG{l+s+sb}{`}seq \PYG{l+m}{8} \PYG{l+m}{14}\PYG{l+s+sb}{`}
+    \PYG{k}{do}
+        \PYG{n+nb}{echo} \PYG{n+nv}{\PYGZdl{}i} \PYG{p}{|} ./a1\PYGZus{}test \PYGZlt{} input\PYG{n+nv}{\PYGZdl{}j} \PYGZgt{}\PYGZgt{} \PYG{n+nv}{\PYGZdl{}i}.out
+        \PYG{n+nb}{echo} \PYG{n+nv}{\PYGZdl{}j} \PYG{n+nv}{\PYGZdl{}?}
+    \PYG{k}{done}
+\PYG{k}{done} 
+\PYG{c+c1}{\PYGZsh{}rm \PYGZhy{}rf Testcase*}
+\end{Verbatim}

@@ -1,0 +1,23 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+ch}{\PYGZsh{}!/bin/zsh}
+
+\PYG{k}{for} \PYG{o}{((}\PYG{n+nv}{i}\PYG{o}{=}\PYG{l+m}{0}\PYG{p}{;} i\PYGZlt{}\PYG{l+m}{3}\PYG{p}{;} i++\PYG{o}{))}\PYG{p}{;} \PYG{k}{do}
+    \PYG{n+nb}{echo} \PYG{n+nv}{\PYGZdl{}i}
+    \PYG{k}{for} \PYG{o}{((}\PYG{n+nv}{j}\PYG{o}{=}\PYG{l+m}{0}\PYG{p}{;} j\PYGZlt{}\PYG{l+m}{8}\PYG{p}{;} j++\PYG{o}{))}\PYG{p}{;} \PYG{k}{do}
+        \PYG{k}{for} \PYG{o}{((}\PYG{n+nv}{k}\PYG{o}{=}\PYG{l+m}{0}\PYG{p}{;} k\PYGZlt{}\PYG{l+m}{5}\PYG{p}{;} k++\PYG{o}{))}\PYG{p}{;} \PYG{k}{do}
+            \PYG{n+nb}{echo} \PYG{n+nv}{\PYGZdl{}i} \PYG{p}{|} ./a1\PYGZus{}test \PYGZlt{} input\PYG{n+nv}{\PYGZdl{}j\PYGZdl{}k} \PYGZgt{}\PYGZgt{} \PYG{n+nv}{\PYGZdl{}i\PYGZdl{}k}.out
+            \PYG{n+nb}{echo} \PYG{n+nv}{\PYGZdl{}j} \PYG{n+nv}{\PYGZdl{}?}
+        \PYG{k}{done}
+    \PYG{k}{done}
+\PYG{k}{done} 
+
+\PYG{k}{for} \PYG{o}{((}\PYG{n+nv}{i}\PYG{o}{=}\PYG{l+m}{3}\PYG{p}{;} i\PYGZlt{}\PYG{l+m}{6}\PYG{p}{;} i++\PYG{o}{))}\PYG{p}{;} \PYG{k}{do}
+    \PYG{n+nb}{echo} \PYG{n+nv}{\PYGZdl{}i}
+    \PYG{k}{for} \PYG{o}{((}\PYG{n+nv}{j}\PYG{o}{=}\PYG{l+m}{8}\PYG{p}{;} j\PYGZlt{}\PYG{l+m}{15}\PYG{p}{;} j++\PYG{o}{))}\PYG{p}{;} \PYG{k}{do}
+        \PYG{k}{for} \PYG{o}{((}\PYG{n+nv}{k}\PYG{o}{=}\PYG{l+m}{0}\PYG{p}{;} k\PYGZlt{}\PYG{l+m}{5}\PYG{p}{;} k++\PYG{o}{))}\PYG{p}{;} \PYG{k}{do}
+            \PYG{n+nb}{echo} \PYG{n+nv}{\PYGZdl{}i} \PYG{p}{|} ./a1\PYGZus{}test \PYGZlt{} input\PYG{n+nv}{\PYGZdl{}j\PYGZdl{}k} \PYGZgt{}\PYGZgt{} \PYG{n+nv}{\PYGZdl{}i\PYGZdl{}k}.out
+            \PYG{n+nb}{echo} \PYG{n+nv}{\PYGZdl{}j} \PYG{n+nv}{\PYGZdl{}?}
+        \PYG{k}{done}
+    \PYG{k}{done}
+\PYG{k}{done} 
+\end{Verbatim}

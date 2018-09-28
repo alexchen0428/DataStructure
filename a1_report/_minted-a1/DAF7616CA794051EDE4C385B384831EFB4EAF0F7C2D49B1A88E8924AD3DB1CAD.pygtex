@@ -1,0 +1,33 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kn}{import} \PYG{n+nn}{pandas} \PYG{k+kn}{as} \PYG{n+nn}{pd}
+\PYG{k+kn}{import} \PYG{n+nn}{matplotlib.pyplot} \PYG{k+kn}{as} \PYG{n+nn}{plt}
+\PYG{k+kn}{from} \PYG{n+nn}{matplotlib.patches} \PYG{k+kn}{import} \PYG{o}{*}
+\PYG{k+kn}{import} \PYG{n+nn}{seaborn} \PYG{k+kn}{as} \PYG{n+nn}{sns}
+\PYG{n}{n} \PYG{o}{=} \PYG{p}{[}\PYG{l+m+mi}{5}\PYG{p}{,} \PYG{l+m+mi}{5000}\PYG{p}{,} \PYG{l+m+mi}{8000}\PYG{p}{,} \PYG{l+m+mi}{12000}\PYG{p}{,} \PYG{l+m+mi}{20000}\PYG{p}{,} \PYG{l+m+mi}{30000}\PYG{p}{,} \PYG{l+m+mi}{40000}\PYG{p}{,} \PYG{l+m+mi}{50000}\PYG{p}{,} \PYG{n+nb}{int}\PYG{p}{(}\PYG{l+m+mf}{0.25e7}\PYG{p}{),} \PYG{n+nb}{int}\PYG{p}{(}\PYG{l+m+mf}{0.5e7}\PYG{p}{),} \PYG{n+nb}{int}\PYG{p}{(}\PYG{l+m+mf}{1e7}\PYG{p}{),} \PYG{n+nb}{int}\PYG{p}{(}\PYG{l+m+mf}{1.5e7}\PYG{p}{),} \PYG{n+nb}{int}\PYG{p}{(}\PYG{l+m+mf}{2.0e7}\PYG{p}{),} \PYG{n+nb}{int}\PYG{p}{(}\PYG{l+m+mf}{2.5e7}\PYG{p}{),} \PYG{n+nb}{int}\PYG{p}{(}\PYG{l+m+mf}{3e7}\PYG{p}{)]}
+\PYG{n}{label} \PYG{o}{=} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}Bubblesort\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}Insertionsort\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}Selectionsort\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}Mergesort\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}Quicksort\PYGZus{}extra\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}Quicksort\PYGZus{}inplace\PYGZsq{}}\PYG{p}{]}
+\PYG{k}{def} \PYG{n+nf}{myplot}\PYG{p}{(}\PYG{n}{Range}\PYG{p}{,} \PYG{n}{N}\PYG{p}{,} \PYG{n}{Out}\PYG{p}{,} \PYG{n}{Label}\PYG{p}{,} \PYG{n}{Title}\PYG{p}{,} \PYG{n}{name}\PYG{p}{):}
+    \PYG{n}{plt}\PYG{o}{.}\PYG{n}{figure}\PYG{p}{(}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{10}\PYG{p}{,}\PYG{l+m+mi}{6}\PYG{p}{))}
+    \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n}{Range}\PYG{p}{:}
+        \PYG{n}{time} \PYG{o}{=} \PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{o}{*}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{N}\PYG{p}{)}
+        \PYG{k}{for} \PYG{n}{k} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{5}\PYG{p}{):}
+            \PYG{k}{with} \PYG{n+nb}{open}\PYG{p}{(}\PYG{n}{Out}\PYG{o}{.}\PYG{n}{format}\PYG{p}{(}\PYG{n}{i}\PYG{p}{,}\PYG{n}{k}\PYG{p}{),} \PYG{l+s+s1}{\PYGZsq{}r\PYGZsq{}}\PYG{p}{)} \PYG{k}{as} \PYG{n}{f}\PYG{p}{:}
+                \PYG{n}{data} \PYG{o}{=} \PYG{n}{f}\PYG{o}{.}\PYG{n}{read}\PYG{p}{()}
+                \PYG{n}{tmp} \PYG{o}{=} \PYG{n}{data}\PYG{o}{.}\PYG{n}{split}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+se}{\PYGZbs{}n}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+                \PYG{n}{time} \PYG{o}{=} \PYG{n}{time} \PYG{o}{+} \PYG{n+nb}{map}\PYG{p}{(}\PYG{n+nb}{eval}\PYG{p}{,} \PYG{n}{tmp}\PYG{p}{[:}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{])} \PYG{o}{//}\PYG{n}{eliminate} \PYG{n}{the} \PYG{n}{ending} \PYG{l+s+s1}{\PYGZsq{} \PYGZsq{}}
+        \PYG{n}{time} \PYG{o}{=} \PYG{p}{[}\PYG{n}{t}\PYG{o}{/}\PYG{l+m+mf}{5.0} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n}{time}\PYG{p}{];}
+        \PYG{n}{plt}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{N}\PYG{p}{,} \PYG{n}{time}\PYG{p}{)}
+    \PYG{n}{plt}\PYG{o}{.}\PYG{n}{legend}\PYG{p}{(}\PYG{n}{Label}\PYG{p}{,} \PYG{n}{loc} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}upper left\PYGZsq{}}\PYG{p}{)}
+    \PYG{n}{plt}\PYG{o}{.}\PYG{n}{xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Input size\PYGZsq{}}\PYG{p}{)}
+    \PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}Execution time (s)\PYGZsq{}}\PYG{p}{)}
+    \PYG{n}{plt}\PYG{o}{.}\PYG{n}{title}\PYG{p}{(}\PYG{n}{Title}\PYG{p}{)}
+    \PYG{n}{plt}\PYG{o}{.}\PYG{n}{savefig}\PYG{p}{(}\PYG{n}{name}\PYG{p}{)}
+    \PYG{n}{plt}\PYG{o}{.}\PYG{n}{show}\PYG{p}{()}
+
+\PYG{k}{def} \PYG{n+nf}{\PYGZus{}\PYGZus{}name\PYGZus{}\PYGZus{}} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}\PYGZus{}\PYGZus{}main\PYGZus{}\PYGZus{}\PYGZdq{}}\PYG{p}{:}
+    \PYG{n}{myplot}\PYG{p}{(}\PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{),} \PYG{n}{n}\PYG{p}{[:}\PYG{l+m+mi}{8}\PYG{p}{],} \PYG{l+s+s1}{\PYGZsq{}\PYGZob{}\PYGZcb{}\PYGZob{}\PYGZcb{}.out\PYGZsq{}}\PYG{p}{,} \PYG{n}{label}\PYG{p}{[:}\PYG{l+m+mi}{3}\PYG{p}{],} \PYG{l+s+s1}{\PYGZsq{}\PYGZdl{}O(n\PYGZca{}2)\PYGZdl{} sort algorithms\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}012.jpg\PYGZsq{}}\PYG{p}{)}
+    \PYG{n}{myplot}\PYG{p}{(}\PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{6}\PYG{p}{),} \PYG{n}{n}\PYG{p}{[}\PYG{l+m+mi}{8}\PYG{p}{:],} \PYG{l+s+s1}{\PYGZsq{}\PYGZob{}\PYGZcb{}\PYGZob{}\PYGZcb{}.out\PYGZsq{}}\PYG{p}{,} \PYG{n}{label}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{:}\PYG{l+m+mi}{6}\PYG{p}{],} \PYG{l+s+s1}{\PYGZsq{}\PYGZdl{}O(n\PYGZbs{}log n)\PYGZdl{} sort algorithms\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}345.jpg\PYGZsq{}}\PYG{p}{)}
+    \PYG{n}{myplot}\PYG{p}{(}\PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{),} \PYG{n}{n}\PYG{p}{[:}\PYG{l+m+mi}{8}\PYG{p}{],} \PYG{l+s+s1}{\PYGZsq{}reverse\PYGZob{}\PYGZcb{}\PYGZob{}\PYGZcb{}.out\PYGZsq{}}\PYG{p}{,} \PYG{n}{label}\PYG{p}{[:}\PYG{l+m+mi}{3}\PYG{p}{],} \PYG{l+s+s1}{\PYGZsq{}\PYGZdl{}O(n\PYGZca{}2)\PYGZdl{} Sort algorithms for a descending array\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}reverse012.jpg\PYGZsq{}}\PYG{p}{)}
+    \PYG{n}{myplot}\PYG{p}{(}\PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,}\PYG{l+m+mi}{6}\PYG{p}{),} \PYG{n}{n}\PYG{p}{[}\PYG{l+m+mi}{8}\PYG{p}{:],} \PYG{l+s+s1}{\PYGZsq{}reverse\PYGZob{}\PYGZcb{}\PYGZob{}\PYGZcb{}.out\PYGZsq{}}\PYG{p}{,} \PYG{n}{label}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{:}\PYG{l+m+mi}{6}\PYG{p}{],} \PYG{l+s+s1}{\PYGZsq{}\PYGZdl{}O(n\PYGZbs{}log n)\PYGZdl{} Sort algorithms for a descending array\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}reverse345.jpg\PYGZsq{}}\PYG{p}{)}
+    \PYG{n}{myplot}\PYG{p}{(}\PYG{n+nb}{range}\PYG{p}{(}\PYG{l+m+mi}{6}\PYG{p}{),} \PYG{n}{n}\PYG{p}{[:}\PYG{l+m+mi}{8}\PYG{p}{],} \PYG{l+s+s1}{\PYGZsq{}same\PYGZob{}\PYGZcb{}\PYGZob{}\PYGZcb{}.out\PYGZsq{}}\PYG{p}{,} \PYG{n}{label}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}Sort algorithms for an array of 1\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}same.jpg\PYGZsq{}}\PYG{p}{)}
+    
+\end{Verbatim}
