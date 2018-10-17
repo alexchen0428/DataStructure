@@ -1,0 +1,15 @@
+% !TEX root = ../a2.tex
+\usepackage{minted}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{caption}
+% \usemintedstyle{monokai}
+\definecolor{bg}{rgb}{0.95,0.95,0.95}
+
+\newcommand{\inputcode}[4]{
+    \begin{longlisting}
+        \caption{#3}
+        \inputminted[xleftmargin=25pt, linenos, breaklines, bgcolor=bg]{#1}{#2}
+        \label{#4}
+\end{longlisting}}
+\newenvironment{longlisting}{\captionsetup{type=listing}}{}

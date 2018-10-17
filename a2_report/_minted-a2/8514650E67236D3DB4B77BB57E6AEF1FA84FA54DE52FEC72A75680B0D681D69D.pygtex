@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+ch}{\PYGZsh{}!/bin/zsh}
+\PYG{n+nv}{size}\PYG{o}{=(}\PYG{l+m}{1} \PYG{l+m}{5} \PYG{l+m}{5000} \PYG{l+m}{8000} \PYG{l+m}{12000} \PYG{l+m}{20000} \PYG{l+m}{30000} \PYG{l+m}{40000} \PYG{l+m}{50000} \PYG{l+m}{60000}\PYG{o}{)}
+\PYG{k}{for} \PYG{o}{((}\PYG{n+nv}{i}\PYG{o}{=}\PYG{l+m}{0}\PYG{p}{;} i\PYGZlt{}\PYG{l+m}{3}\PYG{p}{;} i++\PYG{o}{))}\PYG{p}{;} \PYG{k}{do}
+    \PYG{k}{for} \PYG{o}{((}\PYG{n+nv}{j}\PYG{o}{=}\PYG{l+m}{0}\PYG{p}{;} j\PYGZlt{}\PYG{l+m}{10}\PYG{p}{;} j++\PYG{o}{))}\PYG{p}{;} \PYG{k}{do}
+        \PYG{n+nv}{s}\PYG{o}{=}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{size}\PYG{p}{[}\PYG{n+nv}{\PYGZdl{}j}\PYG{p}{+1]}\PYG{l+s+si}{\PYGZcb{}}
+        \PYG{k}{for} \PYG{o}{((}\PYG{n+nv}{k}\PYG{o}{=}\PYG{l+m}{0}\PYG{p}{;} k\PYGZlt{}s\PYG{p}{;} k++\PYG{o}{))}\PYG{p}{;} \PYG{k}{do}
+            \PYG{n+nb}{echo} \PYG{n+nv}{\PYGZdl{}i} \PYG{n+nv}{\PYGZdl{}k} \PYG{p}{|} ./test\PYGZlt{} ../inputs/\PYG{n+nv}{\PYGZdl{}j}.in \PYGZgt{}\PYGZgt{} ../outs/\PYG{n+nv}{\PYGZdl{}i\PYGZdl{}j}.out
+        \PYG{k}{done}
+    \PYG{k}{done}
+\PYG{k}{done} 
+\end{Verbatim}

@@ -52,15 +52,10 @@ int Dselect(int d[], int n, int k) {
         insertionsort(d, n);
         return d[k];
     }
-    // for (int i = 0; i < n; ++i) cout << d[i] <<" "; cout << endl;
     medians(d, n);
-    // for (int i = 0; i < n; ++i) cout << d[i] <<" "; cout << endl;
     Dselect(d, n/5, n/10);
     int p = n/10;
-    // cout << "pivot is " << "d[" << p << "] = " << d[p] << "\n";
     int j = partition(d, n, p);
-    // for (int i = 0; i < n; ++i) cout << d[i] <<" "; cout << endl;
-    // cout << "d[" << j << "] = " << d[j] << "\n";
     if (j == k) return d[j];
     if (j > k) return Dselect(d, j, k);
     else return Dselect(d+j+1, n-j-1, k-j-1);
