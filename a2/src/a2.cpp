@@ -70,6 +70,6 @@ int main() {
     for (int i = 0; i < n; ++i) cin >> d[i];
     ans = (flag == 0) ? Rselect(d, n, k):Dselect(d, n, k);
     delete[] d;
-    cout << ans << "\n";
+    cout << "The order-" << k << " item is " << ans << "\n";
     return 0;
 }

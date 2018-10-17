@@ -2,3 +2,4 @@
 *.out
 *.o
 a2/test/.ipynb_checkpoints/plot-checkpoint.ipynb
+*.tar
