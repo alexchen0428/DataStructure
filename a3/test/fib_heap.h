@@ -69,17 +69,7 @@ private:
   void consolidate();
   void link(const decltype(min)&y, node_t *&x);
   void erase_helper(std::list<node_t *>);
-  void print_list() const {
-      std::cout << "( ";
-      for (auto p = roots.begin(); p != roots.end(); ++p) {
-        std::cout << (*p)->key << ":" << (*p)->deg << " ";
-      }
-      std::cout << ")" << std::endl;
-    }
 };
-
-
-
 
 template<typename TYPE, typename COMP>
 fib_heap<TYPE, COMP> :: fib_heap(COMP comp) {
@@ -105,7 +95,7 @@ void fib_heap<TYPE, COMP> :: erase_helper(std::list<node_t *> vic) {
 template<typename TYPE, typename COMP>
 void fib_heap<TYPE, COMP> :: enqueue(const TYPE &val) {
     node_t *x = new node_t();
-    x->deg = 0; x->key = val;
+    x->deg = 0; x->key = std::move(val);
     roots.emplace_front(x);
     if (min == roots.end() || (min != roots.end() && compare(x->key, (*min)->key))) min = roots.begin();
     ++n;

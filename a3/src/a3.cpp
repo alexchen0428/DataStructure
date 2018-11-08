@@ -29,7 +29,6 @@ struct compare_t {
 enum im_t {UNSORTED, BINARY, FIBONACCI, IM_SIZE};
 
 unsigned m, n;
-static unsigned step = 0;
 int map[MAXM][MAXN];
 bool reached[MAXM][MAXN];
 coord pred[MAXM][MAXN];
@@ -40,6 +39,8 @@ static int v_flag = 0;
 static im_t i_flag = IM_SIZE;
 
 const static char *im_name[] = {"UNSORTED", "BINARY", "FIBONACCI"};
+
+priority_queue<coord, compare_t> *heap = NULL;
 
 bool hasNeighbor(const coord &u, unsigned d) {
     int nx = u.x + dx[d];
@@ -56,6 +57,10 @@ void read() {
         for (unsigned i = 0; i < m; ++i)
             std::cin >> map[i][j];
 }
+
+#ifndef TEST
+
+static unsigned step = 0;
 
 void trace_helper(const coord &u) {
     if (u.x != s.x || u.y != s.y)
@@ -82,8 +87,9 @@ void log_t(const coord &v) {
     std::cout << "Cell " << point(v) << " with accumulated length " <<  v.pathcost << " is the ending point." << "\n";
 }
 
-void dijkstra_heap() {
-    priority_queue<coord, compare_t> *heap;
+#endif
+
+void construct_heap() {
     switch (i_flag) {
         case UNSORTED: 
             heap = new unsorted_heap<coord, compare_t>;
@@ -97,6 +103,13 @@ void dijkstra_heap() {
         default:
             return;
     }
+}
+
+void destroy_heap() {
+    delete heap;
+}
+
+void dijkstra_heap() {
     reached[s.x][s.y] = true;
     s.pathcost = map[s.x][s.y];
     heap->enqueue(s);
@@ -117,7 +130,6 @@ void dijkstra_heap() {
                 if (v_flag) log_t(v);
                 trace_back_path(v.pathcost);
 #endif
-                delete heap;
                 return;
             }
 #ifndef TEST
@@ -141,7 +153,6 @@ void getoptions(const int &argc, char **argv) {
             case 'v':
                 v_flag = 1;
                 break;
-
             case 'i':
                 for (unsigned i = 0; i < IM_SIZE; ++i)
                     if (strcmp(optarg, im_name[i]) == 0) {
@@ -149,16 +160,42 @@ void getoptions(const int &argc, char **argv) {
                         break;
                     }
                 break;
-            
             default:
                 break;
         }
     }
 }
 
+#ifdef TEST
+
+double bg, runtime;
+
+void set_clock() {
+    bg = clock();
+}
+
+void get_clock() {
+    runtime = (clock() - bg) * 1.0 / CLOCKS_PER_SEC;
+}
+
+#endif
+
 int main(int argc, char **argv) {
     getoptions(argc, argv);
     read();
+    construct_heap();
+
+#ifdef TEST
+    set_clock();
+#endif
+
     dijkstra_heap();
+
+#ifdef TEST
+    get_clock();
+    std::cout << runtime << "\n";
+#endif
+
+    destroy_heap();
     return 0;
 }

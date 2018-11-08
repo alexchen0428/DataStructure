@@ -10,7 +10,7 @@ OBJS = $(SRCS:.cpp=.o)
 TARGETS = main #$(MAINSRCS:.cpp=)
 MEMCHECKARGS = 
 
-CFLAGS = -g -Wall -o2
+CFLAGS = -g -Wall -O2
 
 %.o: %.cpp
 	$(CC) $(CFLAGS) -o $@ -c $< 

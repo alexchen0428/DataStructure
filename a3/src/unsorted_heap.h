@@ -58,28 +58,35 @@ unsorted_heap<TYPE, COMP> :: unsorted_heap(COMP comp) {
 
 template<typename TYPE, typename COMP>
 void unsorted_heap<TYPE, COMP> :: enqueue(const TYPE &val) {
-    data.emplace_back(val);
+    data.emplace_back(std::move(val));
 }
 
 template<typename TYPE, typename COMP>
 TYPE unsorted_heap<TYPE, COMP> :: dequeue_min() {
-    auto it_min = data.begin(), it = data.begin();
-    for (++it; it != data.end(); ++it) {
-        if (compare(*it, *it_min)) it_min = it;
+    unsigned index = 0, size = data.size();
+    TYPE min = data[0];
+    for (unsigned i = 1; i < size; ++i) {
+        if (compare(data[i], min)) {
+            index = i;
+            min = data[i];
+        }
     }
-    TYPE res = *it_min;
-    *it_min = data.back();
+    std::swap(data[index], data[size-1]);
     data.pop_back();
-    return res;
+    return std::move(min);
 }
 
 template<typename TYPE, typename COMP>
 const TYPE &unsorted_heap<TYPE, COMP> :: get_min() const {
-    auto it_min = data.begin();
-    for (auto it = data.begin() + 1; it != data.end(); ++it) {
-        if (compare(*it, *it_min)) it_min = it;
+    unsigned index = 0, size = data.size();
+    TYPE min = data[0];
+    for (unsigned i = 1; i < size; ++i) {
+        if (compare(data[i], min)) {
+            index = i;
+            min = data[i];
+        }
     }
-    return *it_min;
+    return data[index];
 }
 
 template<typename TYPE, typename COMP>

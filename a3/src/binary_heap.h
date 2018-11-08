@@ -61,7 +61,7 @@ binary_heap<TYPE, COMP> :: binary_heap(COMP comp) {
 
 template<typename TYPE, typename COMP>
 void binary_heap<TYPE, COMP> :: enqueue(const TYPE &val) {
-    data.emplace_back(val);
+    data.emplace_back(std::move(val));
     unsigned p = ++size_;
     while (p != 1 && compare(data[p], data[p >> 1])) {
         std::swap(data[p], data[p >> 1]);
@@ -71,7 +71,7 @@ void binary_heap<TYPE, COMP> :: enqueue(const TYPE &val) {
 
 template<typename TYPE, typename COMP>
 TYPE binary_heap<TYPE, COMP> :: dequeue_min() {
-    TYPE vic = data[1];
+    TYPE vic = std::move(data[1]);
     data[1] = data[size_--];
     data.pop_back();
     unsigned p = 1;
