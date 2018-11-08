@@ -1,15 +1,16 @@
-# Sample Makefile 
+# Makefile for compiling the program test_heap
+# variable definition
 
 CC = g++
-MAINSRCS = test_heap.cpp
+MAINSRCS = a3.cpp
 OTHSRCS =
-HEADERS = 
+HEADERS = priority_queue.h unsorted_heap.h binary_heap.h fib_heap_p.h
 SRCS = $(MAINSRCS) $(OTHSRCS)
 OBJS = $(SRCS:.cpp=.o)
-TARGETS = main
+TARGETS = main #$(MAINSRCS:.cpp=)
 MEMCHECKARGS = 
 
-CFLAGS = -g -Wall -O2
+CFLAGS = -g -Wall -o2
 
 %.o: %.cpp
 	$(CC) $(CFLAGS) -o $@ -c $< 

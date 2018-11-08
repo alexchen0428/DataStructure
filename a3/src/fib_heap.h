@@ -1,5 +1,5 @@
-#ifndef FIB_HEAP_H
-#define FIB_HEAP_H
+#ifndef FIB_HEAP_PP_H
+#define FIB_HEAP_PP_H
 
 #include <algorithm>
 #include <cmath>
@@ -61,15 +61,14 @@ private:
   struct node_t {
     TYPE key;
     unsigned deg;
-    // node_t *prt;
-    std::list<node_t *> *cld;
+    std::list<node_t *> cld;
   };
   typename std::list<node_t *>::iterator min;
   std::list<node_t *> roots;
 
   void consolidate();
   void link(const decltype(min)&y, node_t *&x);
-  void erase_helper(std::list<node_t *> *);
+  void erase_helper(std::list<node_t *>);
   void print_list() const {
       std::cout << "( ";
       for (auto p = roots.begin(); p != roots.end(); ++p) {
@@ -78,6 +77,9 @@ private:
       std::cout << ")" << std::endl;
     }
 };
+
+
+
 
 template<typename TYPE, typename COMP>
 fib_heap<TYPE, COMP> :: fib_heap(COMP comp) {
@@ -88,24 +90,22 @@ fib_heap<TYPE, COMP> :: fib_heap(COMP comp) {
 
 template<typename TYPE, typename COMP>
 fib_heap<TYPE, COMP> :: ~fib_heap() {
-    erase_helper(&roots);
+    erase_helper(roots);
 }
 
 template<typename TYPE, typename COMP>
-void fib_heap<TYPE, COMP> :: erase_helper(std::list<node_t *> *vic) {
-    for (auto &it : *vic) {
+void fib_heap<TYPE, COMP> :: erase_helper(std::list<node_t *> vic) {
+    if (vic.empty()) return;
+    for (auto &it : vic) {
         erase_helper(it->cld);
-        delete it->cld;
+        delete it;
     }
 }
 
 template<typename TYPE, typename COMP>
 void fib_heap<TYPE, COMP> :: enqueue(const TYPE &val) {
-    node_t *x = new node_t;
-    x->deg = 0;
-    //x->prt = NULL;
-    x->cld = NULL;
-    x->key = val;
+    node_t *x = new node_t();
+    x->deg = 0; x->key = val;
     roots.emplace_front(x);
     if (min == roots.end() || (min != roots.end() && compare(x->key, (*min)->key))) min = roots.begin();
     ++n;
@@ -114,15 +114,12 @@ void fib_heap<TYPE, COMP> :: enqueue(const TYPE &val) {
 template<typename TYPE, typename COMP>
 TYPE fib_heap<TYPE, COMP> :: dequeue_min() {
     TYPE res = (*min)->key;
-    node_t *z = *min;
+    auto &z = *min;
     if (z) {
-        if (z->cld) {
-            for (auto it = z->cld->begin(); it != z->cld->end(); ++it) {
-                roots.emplace_front(*it);
-                // (*it)->prt = NULL;
-            }
-        }
+        if (!z->cld.empty())
+            roots.splice(roots.begin(), std::move(z->cld));
 
+        delete z;
         roots.erase(min); // min has undefined behavior
         --n;
         if (n == 0) min = roots.end();
@@ -133,13 +130,11 @@ TYPE fib_heap<TYPE, COMP> :: dequeue_min() {
 
 template<typename TYPE, typename COMP>
 void fib_heap<TYPE, COMP> :: consolidate() {
-    int Dn = (int)(log(n)/log(phi));
-    std::vector<decltype(min)> A(Dn + 1, roots.end());
-    decltype(min) neww;
-    for (auto w = roots.begin(); w != roots.end(); w = neww) {
-        auto x = w;
-        neww = std::next(w, 1);
-
+    const unsigned Dn = (unsigned)(log(n)/log(phi));
+    decltype(min) A[Dn+1];
+    for (unsigned i = 0; i <= Dn; ++i) A[i] = roots.end();
+    for (auto w = roots.begin(); w != roots.end();) {
+        auto x = w++;
         unsigned d = (*x)->deg;
         while (A[d] != roots.end()) {
             auto y = A[d];
@@ -149,24 +144,19 @@ void fib_heap<TYPE, COMP> :: consolidate() {
         }
         A[d] = x;
     }
-    min = roots.end();
-    for (int i = 0; i <= Dn; ++i) {
-        if (A[i] != roots.end()) {
-            if (min == roots.end() || (min != roots.end() && compare((*A[i])->key, (*min)->key)))
-                min = A[i];
-        }
-    }
+    min = roots.begin();
+    for (auto it = roots.begin(); it != roots.end(); ++it)
+        if (compare((*it)->key, (*min)->key))
+            min = it;
 }
 
 template<typename TYPE, typename COMP>
 void fib_heap<TYPE, COMP> :: link(const decltype(min)&y, node_t *&x) {
     node_t *yy = (*y);
     roots.erase(y);
-    // yy->prt = x;
-    if (x->cld == NULL) x->cld = new std::list<node_t *>();
-    x->cld->emplace_back(yy);
+    x->cld.emplace_front(std::move(yy));
     ++x->deg;
-  }
+}
 
 template<typename TYPE, typename COMP>
 const TYPE &fib_heap<TYPE, COMP> :: get_min() const {
@@ -183,4 +173,4 @@ unsigned fib_heap<TYPE, COMP> :: size() const {
     return n;
 }
 
-#endif //FIB_HEAP_H
+#endif //FIB_HEAP_PP_H

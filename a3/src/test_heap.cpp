@@ -1,9 +1,13 @@
 #include <iostream>
 #include "priority_queue.h"
-#include "fib_heap.h"
+#include "binary_heap.h"
 #include <cstdio>
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
+#define MAXN 10010
+int a[MAXN];
 // The following example defines a functor. It is defined using struct keyword.
 // Recall that struct keyword can also be used to define a class, so it can
 // have member functions, as the example shown below. The difference of using
@@ -21,7 +25,7 @@ using namespace std;
 // will return true if and only if the first argument is strictly smaller
 // than the second argument. The functor type will be passed as the COMP
 // template parameter to the priority queue template. See priority_queue.h,
-// fib_heap.h, and fib_array.h.
+// binary_heap.h, and binary_array.h.
 struct compare_t
 {
     bool operator()(int a, int b) const
@@ -32,26 +36,31 @@ struct compare_t
 
 int main(int argc, char* argv[])
 {
-    int a[] = {3, 6, 7, 4, 2, 1, 2, 3, 10, 9, 8, 8, 2, 1, 0};
+    srand(time(NULL));
+    for (int j = 0; j < MAXN; ++j) a[j] = rand()%1000000-500000;
+
     int i;
     int size = sizeof(a)/sizeof(int);
+    /*
     cout << "Input: ";
     for(i = 0; i < size; i++)
         cout << a[i] << " " << flush;
     cout << endl;
-
+*/
     // We define a priority queue on int with the comparison functor as
     // compare_t defined above. For this queue, the larger the int value is,
     // the less prior it is.
-    priority_queue<int, compare_t> *pql = new fib_heap<int, compare_t>;
+    priority_queue<int, compare_t> *pql = new binary_heap<int, compare_t>;
     for(i = 0; i < size; i++)
         pql->enqueue(a[i]);
 
     cout << "Sort in descending order: " << flush;
+    int prev = 0;
     for(i = 0; i < size; i++)
     {
         int val = pql->dequeue_min();
-        cout << val << " ";
+        if (val > prev && i > 0) return -1;
+        prev = val;
     }
     cout << endl;
     delete pql;
@@ -59,13 +68,13 @@ int main(int argc, char* argv[])
     // For some built-in types or library types, they may define a default less
     // than operator. In this case, when you declare a priority queue, you can
     // omit the second template parameter COMP and it will still work. See
-    // priority_queue.h, fib_heap.h, and fib_heap.h, from which you
+    // priority_queue.h, binary_heap.h, and binary_heap.h, from which you
     // will notice that by default COMP =  std::less<TYPE>.
     //
     // For the following example, we omit the second template parameter, so the
     // priority queue uses the default less than operator defined on int. In
     // this queue, the smaller the int value is, the less prior it is.
-    priority_queue<int> *pqs = new fib_heap<int>;
+    priority_queue<int> *pqs = new binary_heap<int>;
     for(i = 0; i < size; i++)
         pqs->enqueue(a[i]);
 
@@ -73,7 +82,8 @@ int main(int argc, char* argv[])
     for(i = 0; i < size; i++)
     {
         int val = pqs->dequeue_min();
-        cout << val << " ";
+        if (val < prev && i > 0) return -1;
+        prev = val;
     }
     cout << endl;
 
