@@ -7,6 +7,8 @@
 #include "binary_heap.h"
 #include "fib_heap.h"
 
+#define TEST
+
 #define MAXN 5010
 #define MAXM 5010
 #define point(u) "(" << u.x << ", " << u.y << ")"
@@ -156,9 +158,23 @@ void getoptions(const int &argc, char **argv) {
     }
 }
 
+int bg;
+double runtime;
+
+void set_clock() {
+    bg = clock();
+}
+
+void get_clock() {
+    runtime = (clock() - bg) * 1.0 / CLOCKS_PER_SEC;
+}
+
 int main(int argc, char **argv) {
     getoptions(argc, argv);
     read();
+    set_clock();
     dijkstra_heap();
+    get_clock();
+    std::cout << runtime << "\n";
     return 0;
 }

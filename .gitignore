@@ -1,6 +1,7 @@
 *.in
 *.out
 *.o
-a2/test/.ipynb_checkpoints/plot-checkpoint.ipynb
 *.tar
-a3/src/.vscode/settings.json
+**/.vscode/settings.json
+**/.ipynb_checkpoints/plot-checkpoint.ipynb
+**/.ipynb_checkpoints/test-checkpoint.ipynb
