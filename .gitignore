@@ -5,3 +5,6 @@
 **/.vscode/settings.json
 **/.ipynb_checkpoints/plot-checkpoint.ipynb
 **/.ipynb_checkpoints/test-checkpoint.ipynb
+**/_minted-*/
+*.aux
+*.synctex.gz
