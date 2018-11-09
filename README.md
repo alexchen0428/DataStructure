@@ -10,3 +10,9 @@ Here puts timmy's assignments
 ## Assignment 2
 
 ![Comparison between selection algorithms](https://github.com/TimothyGe/DataStructure/blob/master/a2/test/res.png)
+
+
+
+## Assignment 3
+
+![Dijkstra algorithm using different types of priority queues](https://github.com/TimothyGe/DataStructure/blob/master/a3/test/res.png)
