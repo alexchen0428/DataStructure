@@ -77,6 +77,7 @@ private:
     unordered_map<EquityNameType, bool> equityMap;
     set<EquityNameType> equityList; // for midpoint output
 
+    unordered_map<string, bool> nameMap;
     map<string, TransferInfo> transfers; // for transfers
 
     map<EquityNameType, PriceMedian> pricemedian; // EquityNameType dictionary order
