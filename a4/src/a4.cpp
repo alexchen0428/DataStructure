@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include <cstring>
 #include <string>
+#include <sstream>
 #include <getopt.h>
 #include <vector>
 #include "trade.h"
@@ -44,12 +45,14 @@ void getoptions(const int &argc, char **argv) {
 
 void execute() {
     unsigned id = 0;
-    while (!std::cin.eof()) {
+    string cmd;
+    while (getline(std::cin, cmd) && !cmd.empty()) {
+        std::istringstream sin(cmd);
         int duration;
         unsigned timeStamp, price, quantity;
         std::string name, sell_buy, equity;
         char nop;
-        std::cin >> timeStamp >> name >> sell_buy >> equity >> nop >> price >> nop >> quantity >> duration;
+        sin >> timeStamp >> name >> sell_buy >> equity >> nop >> price >> nop >> quantity >> duration;
         if (timeStamp != currentTimeStamp) {
             if (m_flag) trade.medianPrint();
             if (p_flag) trade.midpointPrint();
