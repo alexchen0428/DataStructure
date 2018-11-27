@@ -56,6 +56,7 @@ void Trade::sellerMatch(unsigned id,
                         unsigned price,
                         unsigned quantity,
                         int duration) {
+    transfers.emplace(std::make_pair(name, TransferInfo()));
     if (p_flag) log_p();
     if (g_flag) log_g(false);
     auto &buyer = orderBookMap[equity].buyer;
@@ -104,6 +105,7 @@ void Trade::buyerMatch(unsigned id,
                         unsigned price,
                         unsigned quantity,
                         int duration) {
+    transfers.emplace(std::make_pair(name, TransferInfo()));
     if (p_flag) log_p();
     if (g_flag) log_g(true); 
     auto &seller = orderBookMap[equity].seller;
