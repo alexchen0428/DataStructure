@@ -84,6 +84,8 @@ private:
 
     vector<EquityNameType> tttList; // for ttt
 
+    unordered_map<EquityNameType, bool> tttEquityMap;
+
     unordered_map<EquityNameType, vector<tttOrder::Ptr> > tttMap; // from string to order list
 
     unsigned c_earnings = 0, total = 0, trade_num = 0, share_num = 0;
@@ -107,7 +109,7 @@ public:
 
     static Trade &getInstance();
 
-    void setTTTList(vector<string> &&rhs) {tttList = move(rhs);}
+    void setTTTList(vector<string> &&x, unordered_map<string, bool> &&y) {tttList = move(x); tttEquityMap = move(y);}
 
     void setFlag(const bool &vflag, const bool &mflag, const bool &pflag, const bool &tflag, const bool &gflag) {
         v_flag = vflag;

@@ -11,7 +11,9 @@ if (equityMap.find(equity) == equityMap.end()) {\
     equityList.insert(equity);\
 }
 #define log_g(x)\
-tttMap[equity].emplace_back(std::make_shared<tttOrder>(x, price, timeStamp))
+if (tttEquityMap.find(equity) != tttEquityMap.end()) {\
+    tttMap[equity].emplace_back(std::make_shared<tttOrder>(x, price, timeStamp));\
+}\
 
 #define log_m() pricemedian[equity].insert(p)
 
