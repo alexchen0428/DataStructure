@@ -56,7 +56,7 @@ void Trade::sellerMatch(unsigned id,
                         unsigned price,
                         unsigned quantity,
                         int duration) {
-    if (nameMap.find(name) == nameMap.end()) {
+    if (t_flag && nameMap.find(name) == nameMap.end()) {
         nameMap[name] = true;
         transfers.emplace(std::make_pair(name, TransferInfo()));
     }
@@ -108,7 +108,7 @@ void Trade::buyerMatch(unsigned id,
                         unsigned price,
                         unsigned quantity,
                         int duration) {
-    if (nameMap.find(name) == nameMap.end()) {
+    if (t_flag && nameMap.find(name) == nameMap.end()) {
         nameMap[name] = true;
         transfers.emplace(std::make_pair(name, TransferInfo()));
     }
