@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <unordered_map>
+#include <unordered_set>
 #include <queue>
 #include <set>
 #include <map>
@@ -15,6 +16,7 @@ using std::string;
 using std::priority_queue;
 using std::vector;
 using std::move;
+using std::unordered_set;
 using std::set;
 
 class Trade {
@@ -74,17 +76,17 @@ private:
 
     unordered_map<EquityNameType, orderBook> orderBookMap;
 
-    unordered_map<EquityNameType, bool> equityMap;
+    unordered_set<EquityNameType> equitySet;
     set<EquityNameType> equityList; // for midpoint output
 
-    unordered_map<string, bool> nameMap;
+    unordered_set<string> nameSet;
     map<string, TransferInfo> transfers; // for transfers
 
     map<EquityNameType, PriceMedian> pricemedian; // EquityNameType dictionary order
 
     vector<EquityNameType> tttList; // for ttt
 
-    unordered_map<EquityNameType, bool> tttEquityMap;
+    unordered_set<EquityNameType> tttEquitySet;
 
     unordered_map<EquityNameType, vector<tttOrder::Ptr> > tttMap; // from string to order list
 
@@ -109,7 +111,7 @@ public:
 
     static Trade &getInstance();
 
-    void setTTTList(vector<string> &&x, unordered_map<string, bool> &&y) {tttList = move(x); tttEquityMap = move(y);}
+    void setTTTList(vector<string> &&x, unordered_set<string> &&y) {tttList = move(x); tttEquitySet = move(y);}
 
     void setFlag(const bool &vflag, const bool &mflag, const bool &pflag, const bool &tflag, const bool &gflag) {
         v_flag = vflag;

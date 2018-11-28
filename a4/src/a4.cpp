@@ -9,7 +9,7 @@
 
 bool v_flag = false, m_flag = false, p_flag = false, t_flag = false, g_flag = false;
 std::vector<std::string> tttList;
-std::unordered_map<string, bool> tttEquityMap;
+std::unordered_set<std::string> tttEquitySet;
 
 extern unsigned currentTimeStamp;
 
@@ -39,7 +39,7 @@ void getoptions(const int &argc, char **argv) {
             case 'g': {
                 g_flag = 1;
                 std::string equity = optarg;
-                tttEquityMap[equity] = true;
+                tttEquitySet.emplace(equity);
                 tttList.emplace_back(std::move(equity));
                 break;
             }
@@ -78,7 +78,7 @@ int main(int argc, char *argv[]) {
     std::ios::sync_with_stdio(false);
     std::cin.tie(0);
     getoptions(argc, argv);
-    trade.setTTTList(std::move(tttList), std::move(tttEquityMap));
+    trade.setTTTList(std::move(tttList), std::move(tttEquitySet));
     trade.setFlag(v_flag, m_flag, p_flag, t_flag, g_flag);
     execute();
     return 0;

@@ -6,12 +6,12 @@
 #define expired(x) (x->duration > 0 && x->duration + x->timeStamp <= currentTimeStamp)
 
 #define log_p()\
-if (equityMap.find(equity) == equityMap.end()) {\
-    equityMap[equity] = true;\
+if (equitySet.find(equity) == equitySet.end()) {\
+    equitySet.emplace(equity);\
     equityList.insert(equity);\
 }
 #define log_g(x)\
-if (tttEquityMap.find(equity) != tttEquityMap.end()) {\
+if (tttEquitySet.find(equity) != tttEquitySet.end()) {\
     tttMap[equity].emplace_back(std::make_shared<tttOrder>(x, price, timeStamp));\
 }\
 
@@ -58,8 +58,8 @@ void Trade::sellerMatch(unsigned id,
                         unsigned price,
                         unsigned quantity,
                         int duration) {
-    if (t_flag && nameMap.find(name) == nameMap.end()) {
-        nameMap[name] = true;
+    if (t_flag && nameSet.find(name) == nameSet.end()) {
+        nameSet.emplace(name);
         transfers.emplace(std::make_pair(name, TransferInfo()));
     }
     if (p_flag) log_p();
@@ -110,8 +110,8 @@ void Trade::buyerMatch(unsigned id,
                         unsigned price,
                         unsigned quantity,
                         int duration) {
-    if (t_flag && nameMap.find(name) == nameMap.end()) {
-        nameMap[name] = true;
+    if (t_flag && nameSet.find(name) == nameSet.end()) {
+        nameSet.emplace(name);
         transfers.emplace(std::make_pair(name, TransferInfo()));
     }
     if (p_flag) log_p();
