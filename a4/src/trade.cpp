@@ -10,12 +10,19 @@ if (equitySet.find(equity) == equitySet.end()) {\
     equitySet.emplace(equity);\
     equityList.insert(equity);\
 }
+
 #define log_g(x)\
 if (tttEquitySet.find(equity) != tttEquitySet.end()) {\
     tttMap[equity].emplace_back(std::make_shared<tttOrder>(x, price, timeStamp));\
-}\
+}
 
 #define log_m() pricemedian[equity].insert(p)
+
+#define log_t()\
+if(nameSet.find(name) == nameSet.end()) {\
+    nameSet.emplace(name);\
+    transfers.emplace(std::make_pair(name, TransferInfo()));\
+}
 
 const unsigned INF = (1 << 30);
 
@@ -58,10 +65,7 @@ void Trade::sellerMatch(unsigned id,
                         unsigned price,
                         unsigned quantity,
                         int duration) {
-    if (t_flag && nameSet.find(name) == nameSet.end()) {
-        nameSet.emplace(name);
-        transfers.emplace(std::make_pair(name, TransferInfo()));
-    }
+    if (t_flag) log_t();
     if (p_flag) log_p();
     if (g_flag) log_g(false);
     auto &buyer = orderBookMap[equity].buyer;
@@ -110,10 +114,7 @@ void Trade::buyerMatch(unsigned id,
                         unsigned price,
                         unsigned quantity,
                         int duration) {
-    if (t_flag && nameSet.find(name) == nameSet.end()) {
-        nameSet.emplace(name);
-        transfers.emplace(std::make_pair(name, TransferInfo()));
-    }
+    if (t_flag) log_t();
     if (p_flag) log_p();
     if (g_flag) log_g(true); 
     auto &seller = orderBookMap[equity].seller;
@@ -199,18 +200,18 @@ void Trade::tttPrint() {
         int profit = -INF;
         unsigned seller_price = INF;
         bool has_seller = false;
-        for (size_t i = 0; i < orders.size(); ++i) {
-            if (!orders[i]->isBuy) { // seller
+        for (auto &order : orders) {
+            if (!order->isBuy) { // seller
                 has_seller = true;
-                if (orders[i]->price < seller_price) { // update seller price
-                    ts1_cand = orders[i]->timeStamp;
-                    seller_price = orders[i]->price;
+                if (order->price < seller_price) { // update seller price
+                    ts1_cand = order->timeStamp;
+                    seller_price = order->price;
                 }
             } else { // buyer
-                if (has_seller && (signed)(orders[i]->price - seller_price) > profit) { // new profit
+                if (has_seller && (signed)(order->price - seller_price) > profit) { // new profit
                     ts1 = ts1_cand;
-                    ts2 = orders[i]->timeStamp;
-                    profit = orders[i]->price - seller_price;
+                    ts2 = order->timeStamp;
+                    profit = (signed)(order->price - seller_price);
                 }
             }
         }
