@@ -21,7 +21,7 @@ $(TARGETS): $(OBJS)
 	$(CC) $(CFLAGS) -o $(TARGETS) $(OBJS)
 
 memcheck: $(TARGETS)
-	valgrind --leak-check=full ./$(TARGETS) -v -m -p -t --ttt AMZN < test.txt > result.txt $(MEMCHECKARGS)
+	valgrind --leak-check=full ./$(TARGETS) -v -m -p -t --ttt E_C < test.txt > result.txt $(MEMCHECKARGS)
 
 clean:
 	rm -f $(OBJS) $(TARGETS)

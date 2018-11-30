@@ -8,6 +8,7 @@
 #include "trade.h"
 
 bool v_flag = false, m_flag = false, p_flag = false, t_flag = false, g_flag = false;
+unsigned g_num = 0;
 std::vector<std::string> tttList;
 std::unordered_set<std::string> tttEquitySet;
 
@@ -38,9 +39,9 @@ void getoptions(const int &argc, char **argv) {
                 t_flag = 1; break;
             case 'g': {
                 g_flag = 1;
-                std::string equity = optarg;
-                tttEquitySet.emplace(equity);
-                tttList.emplace_back(std::move(equity));
+                g_num++;
+                tttEquitySet.emplace(optarg);
+                tttList.emplace_back(std::move(optarg));
                 break;
             }
             default: break;
@@ -78,7 +79,7 @@ int main(int argc, char *argv[]) {
     std::ios::sync_with_stdio(false);
     std::cin.tie(0);
     getoptions(argc, argv);
-    trade.setTTTList(std::move(tttList), std::move(tttEquitySet));
+    trade.setTTTList(std::move(tttList), std::move(tttEquitySet), g_num);
     trade.setFlag(v_flag, m_flag, p_flag, t_flag, g_flag);
     execute();
     return 0;

@@ -111,7 +111,7 @@ public:
 
     static Trade &getInstance();
 
-    void setTTTList(vector<string> &&x, unordered_set<string> &&y) {tttList = move(x); tttEquitySet = move(y);}
+    void setTTTList(vector<string> &&x, unordered_set<string> &&y, unsigned g_num) {tttList = move(x); tttEquitySet = move(y); tttMap.reserve(g_num);}
 
     void setFlag(const bool &vflag, const bool &mflag, const bool &pflag, const bool &tflag, const bool &gflag) {
         v_flag = vflag;
